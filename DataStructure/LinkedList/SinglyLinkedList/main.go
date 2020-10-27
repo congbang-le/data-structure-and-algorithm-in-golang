@@ -4,18 +4,18 @@ import (
 	"fmt"
 )
 
-type node struct {
+type Node struct {
 	value int
-	next  *node
+	next  *Node
 }
 
-type list struct {
-	head *node
+type SinglyLinkedList struct {
+	head *Node
 	size int
 }
 
-func (l *list) Insert(idx int, input int) {
-	n := &node{
+func (l *SinglyLinkedList) Insert(idx int, input int) {
+	n := &Node{
 		value: input,
 	}
 	if idx == 0 {
@@ -40,7 +40,7 @@ func (l *list) Insert(idx int, input int) {
 	return
 }
 
-func (l *list) Remove(idx int) {
+func (l *SinglyLinkedList) Remove(idx int) {
 	if idx == 0 {
 		l.head = l.head.next
 		return
@@ -57,8 +57,8 @@ func (l *list) Remove(idx int) {
 
 }
 
-func (l *list) Append(input int) {
-	n := &node{
+func (l *SinglyLinkedList) Append(input int) {
+	n := &Node{
 		value: input,
 	}
 	if l.head == nil {
@@ -77,8 +77,8 @@ func (l *list) Append(input int) {
 	}
 }
 
-func (l *list) Prepend(input int) {
-	n := &node{
+func (l *SinglyLinkedList) Prepend(input int) {
+	n := &Node{
 		value: input,
 	}
 	if l.head == nil {
@@ -93,13 +93,13 @@ func (l *list) Prepend(input int) {
 	return
 }
 
-func (l *list) Reverse() {
+func (l *SinglyLinkedList) Reverse() {
 	if l.size == 1 {
 		return
 	}
 	current := l.head
-	var previous *node
-	var next *node
+	var previous *Node
+	var next *Node
 	for {
 		if current != nil {
 			next = current.next
@@ -113,7 +113,7 @@ func (l *list) Reverse() {
 	}
 }
 
-func (l *list) ShowList() {
+func (l *SinglyLinkedList) ShowList() {
 	current := l.head
 	for {
 		if current == nil {
@@ -126,7 +126,7 @@ func (l *list) ShowList() {
 }
 
 func main() {
-	l := &list{}
+	l := &SinglyLinkedList{}
 	l.Append(5)
 	l.Append(6)
 	fmt.Println("Expect: 5 -> 6 ->")

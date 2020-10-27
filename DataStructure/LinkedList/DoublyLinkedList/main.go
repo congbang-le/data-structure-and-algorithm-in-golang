@@ -4,20 +4,20 @@ import (
 	"fmt"
 )
 
-type node struct {
+type Node struct {
 	value int
-	next  *node
-	prev  *node
+	next  *Node
+	prev  *Node
 }
 
-type list struct {
-	head *node
-	tail *node
+type DoublyLinkedList struct {
+	head *Node
+	tail *Node
 	size int
 }
 
-func (l *list) Append(input int) {
-	n := &node{
+func (l *DoublyLinkedList) Append(input int) {
+	n := &Node{
 		value: input,
 	}
 	if l.head == nil {
@@ -34,8 +34,8 @@ func (l *list) Append(input int) {
 	return
 }
 
-func (l *list) Prepend(input int) {
-	n := &node{
+func (l *DoublyLinkedList) Prepend(input int) {
+	n := &Node{
 		value: input,
 	}
 	if l.head == nil {
@@ -52,11 +52,11 @@ func (l *list) Prepend(input int) {
 	return
 }
 
-func (l *list) Insert(idx int, input int) {
+func (l *DoublyLinkedList) Insert(idx int, input int) {
 	if l.size == 0 {
 		l.Append(input)
 	}
-	n := &node{
+	n := &Node{
 		value: input,
 	}
 	current := l.head
@@ -71,7 +71,7 @@ func (l *list) Insert(idx int, input int) {
 	return
 }
 
-func (l *list) Remove(idx int) {
+func (l *DoublyLinkedList) Remove(idx int) {
 	if l.size == 1 {
 		l.head = nil
 		l.tail = nil
@@ -88,11 +88,11 @@ func (l *list) Remove(idx int) {
 	return
 }
 
-func (l *list) Reverse() {
+func (l *DoublyLinkedList) Reverse() {
 	if l.size <= 1 {
 		return
 	}
-	temp := &node{}
+	temp := &Node{}
 	current := l.head
 	for ; current != nil; current = current.prev {
 		temp = current.prev
@@ -103,7 +103,7 @@ func (l *list) Reverse() {
 	return
 }
 
-func (l *list) ShowList() {
+func (l *DoublyLinkedList) ShowList() {
 	current := l.head
 	for {
 		if current == nil {
@@ -116,7 +116,7 @@ func (l *list) ShowList() {
 }
 
 func main() {
-	l := &list{}
+	l := &DoublyLinkedList{}
 	l.Append(5)
 	l.Append(6)
 	fmt.Println("Expect: 5 <-> 6 <->")
